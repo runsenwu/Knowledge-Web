@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+    {% if node_list %}
+    <ul>
+    {% for node in node_list %}
+        <li><a href="/knowledge_web/node/{{ node.id }}">{{ node.node_name }}</a></li>
+    {% endfor %}
+    </ul>
+    {% else %}
+        <p>No Nodes are available.</p>
+    {% endif %}
+  </body>
+</html>
