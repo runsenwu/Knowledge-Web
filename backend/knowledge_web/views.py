@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404
 from django.http import HttpResponse
 from django.template import loader
 
-from .models import Node, Relationship
+from .models import Node, Edge
 
 def index(request):
     node_list = Node.objects.order_by("node_name")[:5]
@@ -18,5 +18,5 @@ def node_detail(request, node_id):
     return render(request, "knowledge_web/node_detail.html", {"node": node})
 
 def relationship_detail(request, relationship_id):
-    relationship = get_object_or_404(Relationship, pk=relationship_id)
+    relationship = get_object_or_404(Edge, pk=relationship_id)
     return render(request, "knowledge_web/relationship_detail.html", {"relationship": relationship})
