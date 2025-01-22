@@ -1,9 +1,12 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from knowledge_web.views import GraphViewSet, NodeViewSet, EdgeViewSet
 
-from . import views
+router = DefaultRouter()
+router.register(r'graphs', GraphViewSet)
+router.register(r'nodes', NodeViewSet)
+router.register(r'edges', EdgeViewSet)
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("node/<int:node_id>", views.node_detail, name="node_detail"),
-    path("relationship/<int:relationship_id>", views.relationship_detail, name="relationship_detail"),
+    path('', include(router.urls)),
 ]

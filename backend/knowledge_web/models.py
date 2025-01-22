@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.utils.timezone import now
 
 # Create your models here.
 # this is where the data principles will be stored, it will keep track of the state
@@ -28,7 +29,7 @@ class Node(models.Model):
         return self.name
 
 class Edge(models.Model):
-    graph_id = models.ForeignKey(Graph, on_delete=models.CASCADE, related_name="nodes")
+    graph_id = models.ForeignKey(Graph, on_delete=models.CASCADE, related_name="edges")
     starting_node = models.ForeignKey(Node, on_delete=models.CASCADE, related_name="start")
     ending_node = models.ForeignKey(Node, on_delete=models.CASCADE, related_name="end")
     description = models.CharField(max_length=500, blank=True)

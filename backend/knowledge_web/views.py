@@ -1,22 +1,15 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
+from rest_framework import viewsets
+from .models import Graph, Node, Edge
+from .serializers import GraphSerializer, NodeSerializer, EdgeSerializer
 
-from django.http import HttpResponse
-from django.template import loader
+class GraphViewSet(viewsets.ModelViewSet):
+    queryset = Graph.objects.all()
+    serializer_class = GraphSerializer
 
-from .models import Node, Edge
+class NodeViewSet(viewsets.ModelViewSet):
+    queryset = Node.objects.all()
+    serializer_class = NodeSerializer
 
-def index(request):
-    node_list = Node.objects.order_by("node_name")[:5]
-    context = {
-        "node_list": node_list,
-    }
-    return render(request, "knowledge_web/index.html", context)
-
-def node_detail(request, node_id):
-    node = get_object_or_404(Node, pk=node_id)
-    return render(request, "knowledge_web/node_detail.html", {"node": node})
-
-def relationship_detail(request, relationship_id):
-    relationship = get_object_or_404(Edge, pk=relationship_id)
-    return render(request, "knowledge_web/relationship_detail.html", {"relationship": relationship})
+class EdgeViewSet(viewsets.ModelViewSet):
+    queryset = Edge.objects.all()
+    serializer_class = EdgeSerializer
