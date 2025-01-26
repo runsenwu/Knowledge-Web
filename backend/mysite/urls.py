@@ -18,7 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('knowledge_web.urls')),  # Replace 'your_app_name' with your app's name
+    path('', include('knowledge_web.urls')),  # Replace 'your_app_name' with your app's name
 ]

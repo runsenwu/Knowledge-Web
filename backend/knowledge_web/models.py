@@ -10,7 +10,7 @@ class Graph(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=500, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_created=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -23,7 +23,7 @@ class Node(models.Model):
     position_y = models.FloatField(default=0.0)
     node_type = models.CharField(max_length=50, default="round")
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_created=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -35,6 +35,6 @@ class Edge(models.Model):
     description = models.CharField(max_length=500, blank=True)
     connection_type = models.CharField(max_length=50, default="line")
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_created=True)
+    updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.starting_node.name + " --- " + self.ending_node.name
